@@ -473,22 +473,24 @@ class Mysql
   def get_length(data, longlong=nil)
     return if data.length == 0
     c = data.slice!(0)
+
+    return c if c < 251
+
     case c
     when 251
       return nil
     when 252
       a = data.slice!(0,2)
-      return a[0]+a[1]*256
+      return a[0]+(a[1]<<8)
     when 253
       a = data.slice!(0,3)
-      return a[0]+a[1]*256+a[2]*256**2
+      return a[0]+(a[1]<<8)+(a[2]<<16)
     when 254
       a = data.slice!(0,8)
       if longlong then
-	return a[0]+a[1]*256+a[2]*256**2+a[3]*256**3+
-	  a[4]*256**4+a[5]*256**5+a[6]*256**6+a[7]*256**7
+        return a[0]+(a[1]<<8)+(a[2]<<16) +(a[3]<<24)+(a[4]<<32)+(a[5]<<40)+(a[6]<<48)+(a[7]<<56)
       else
-	return a[0]+a[1]*256+a[2]*256**2+a[3]*256**3
+        return a[0]+(a[1]<<8)+(a[2]<<16)+(a[3]<<24)
       end
     else
       c

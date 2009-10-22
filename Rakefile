@@ -9,7 +9,7 @@ end
 spec = Gem::Specification.new do |s|
 
   s.name              = "ruby-mysql"
-  s.version           = "0.2.6"
+  s.version           = "0.2.7"
   s.summary           = "Pure Ruby MySQL"
   s.author            = "TOMITA Masahiro"
 
