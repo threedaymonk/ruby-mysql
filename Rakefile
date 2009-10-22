@@ -1,6 +1,7 @@
 require "rubygems"
 require "rake/gempackagetask"
 require "rake/rdoctask"
+require "lib/mysql/version"
 
 task :default => :package do
   puts "Don't forget to write some tests!"
@@ -9,7 +10,7 @@ end
 spec = Gem::Specification.new do |s|
 
   s.name              = "ruby-mysql"
-  s.version           = "0.2.7"
+  s.version           = Mysql::VERSION::STRING
   s.summary           = "Pure Ruby MySQL"
   s.author            = "TOMITA Masahiro"
 
